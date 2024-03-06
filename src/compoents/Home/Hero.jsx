@@ -47,7 +47,7 @@ export const Hero = () => {
         </div>
 
         {/* for banner  */}
-        <div className="">
+        <div className="container">
           <img
             src="/banner/Vector.png"
             className="absolute hidden lg:block right-10 top-8"
