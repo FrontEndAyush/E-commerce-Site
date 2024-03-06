@@ -7,7 +7,7 @@ export const Hero = () => {
       <div className="container mx-auto  relative flex flex-wrap">
         {/* for texts  */}
         <div className=" relative lg:absolute pl-5 pt-5">
-          <h1 className="font-black  text-7xl mb-4">FIND CLOTHES </h1>
+          <h1 className="font-black  text-10xl mb-4">FIND CLOTHES </h1>
           <h1 className="font-black  text-7xl mb-4">THAT MATCHES</h1>
           <h1 className="font-black tracking-normal leading-[64px]  text-7xl mb-4">
             YOUR STYLE
