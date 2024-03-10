@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import { ShimmerUIThumbnail } from "shimmer-ui-effect";
+import { ShimmerUIButton } from "shimmer-ui-effect";
 
 const NewArrivals = () => {
   let products = useSelector((state) => state.counterSlice.product);
@@ -23,10 +23,15 @@ const NewArrivals = () => {
         </h1>
         {isTrue === true ? (
           <>
-            <div className="flex justify-center mt-16">
-              <Box sx={{ display: "flex" }}>
-                <CircularProgress />
-              </Box>
+            <div className="flex justify-center mt-16  ">
+              <div className="flex flex-col relative right-14">
+                <ShimmerUIThumbnail height={200} width={200} rounded />
+                <div className="flex flex-col relative top-30">
+                  <ShimmerUIButton borderRadius={2} height={15} width={150} />
+                  <ShimmerUIButton borderRadius={2} height={15} width={100} />
+                  <ShimmerUIButton borderRadius={2} height={15} width={100} />
+                </div>
+              </div>
             </div>
           </>
         ) : (
