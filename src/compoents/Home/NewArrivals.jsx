@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
+
+//  for shimmer effect install it from npm js
 import { ShimmerUIThumbnail } from "shimmer-ui-effect";
 import { ShimmerUIButton } from "shimmer-ui-effect";
 
@@ -24,6 +26,7 @@ const NewArrivals = () => {
         {isTrue === true ? (
           <>
             <div className="flex justify-center mt-16  ">
+              {/* for shimmer effect you have to install npm js shimmer effect plugin */}
               <div className="flex flex-col relative right-14">
                 <ShimmerUIThumbnail height={200} width={200} rounded />
                 <div className="flex flex-col relative top-30">

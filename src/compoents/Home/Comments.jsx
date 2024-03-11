@@ -3,13 +3,14 @@ import { FaStar } from "react-icons/fa";
 import { TiTick } from "react-icons/ti";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
+
+// swipper js library
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+// import required  swipper js modules
+import {  Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const Comments = () => {
   let [comments, setComments] = useState([]);
@@ -25,6 +26,7 @@ const Comments = () => {
         <h1 className="text-4xl font-extrabold text-center mb-5">
           OUR HAPPY CUSTOMERS
         </h1>
+        {/* for automatic  swipping effect  */}
         <Swiper
           spaceBetween={10}
           centeredSlides={false}

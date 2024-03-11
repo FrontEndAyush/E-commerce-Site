@@ -33,6 +33,7 @@ const Shop = () => {
       {isTrue === true ? (
         <>
           <div className="flex justify-center mt-16  ">
+             {/* for shimmer effect you have to install npm js shimmer effect plugin */}
             <div className="flex flex-col relative right-14">
               <ShimmerUIThumbnail height={200} width={200} rounded />
               <div className="flex flex-col relative top-30">

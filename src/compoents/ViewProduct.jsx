@@ -5,6 +5,8 @@ import Comments from "./Home/Comments";
 import { useDispatch, useSelector } from "react-redux";
 import { increment } from "../Reducer/Reducer";
 import { getId } from "../Reducer/Reducer";
+
+// for Zooming the images installed from npm js
 import Zoom from "react-img-zoom-gdn";
 
 const ViewProduct = () => {
@@ -25,6 +27,8 @@ const ViewProduct = () => {
               className="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center"
             >
               <div className="rounded-lg">
+
+                {/* zoom effect attribut  */}
                 <Zoom
                   img={product.image}
                   zoomScale={3}
