@@ -8,6 +8,7 @@ const initialState = {
   isTrue: true,
   filteredData: [],
   filteredDataByCategory: [],
+  counter: 0,
 };
 
 export const counterSlice = createSlice({
@@ -43,6 +44,13 @@ export const counterSlice = createSlice({
     getFilterDataByCategory: (state, action) => {
       state.filteredDataByCategory = action.payload;
     },
+    counter: (state) => {
+      state.counter += 1;
+    },
+    counterDecrement: (state, action) => {
+      state.counter = action.payload;
+      console.log(action.payload)
+    },
   },
 });
 
@@ -55,7 +63,9 @@ export const {
   getFilteredId,
   isTrueMethod,
   getfilteredData,
-  getFilterDataByCategory
+  getFilterDataByCategory,
+  counter,
+  counterDecrement
 } = counterSlice.actions;
 
 export default counterSlice;

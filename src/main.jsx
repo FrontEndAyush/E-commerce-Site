@@ -13,6 +13,11 @@ import MensClothing from "./compoents/MensClothing.jsx";
 import WomenClothings from "./compoents/WomensClothings.jsx";
 import Jewelery from "./compoents/Jewelery.jsx";
 import NotFound from "./compoents/NotFound.jsx";
+import Address from "./checkout_process/Address.jsx";
+import AddressForm from "./checkout_process/AddressForm.jsx";
+import DeliveryAddressSelection from "./checkout_process/DeliveryAddressSelection.jsx";
+import Payment from "./checkout_process/Payment.jsx";
+import OrderConfirmed from "./checkout_process/OrderConfirmed.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,8 +53,33 @@ const router = createBrowserRouter([
         element: <Jewelery />,
       },
       {
-        path : "*",
+        path: "*",
         element: <NotFound></NotFound>,
+      },
+
+      {
+        path: "/address",
+        element: <Address />,
+        children: [
+          {
+            path: "/address",
+            element: <AddressForm />,
+          },
+          {
+            path: "/address/select_address",
+            element: <DeliveryAddressSelection />,
+          },
+          {
+            path: "/address/select_address/payments",
+            element: <Payment />,
+          },
+          {
+            path:'/address/select_address/payments/order_confirmation',
+           element: <OrderConfirmed ></OrderConfirmed>
+          },
+
+          
+        ],
       },
     ],
   },

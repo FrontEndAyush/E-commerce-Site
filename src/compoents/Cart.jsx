@@ -4,6 +4,8 @@ import { decrement } from "../Reducer/Reducer";
 
 import { incrementByAmount } from "../Reducer/Reducer";
 import { getFilteredId } from "../Reducer/Reducer";
+import { Link } from "react-router-dom";
+import { counter } from "../Reducer/Reducer";
 
 const Cart = () => {
   let [priceByQuantity, setPriceByQuantity] = useState([0]);
@@ -25,7 +27,6 @@ const Cart = () => {
         0
       );
 
-
       dispatch(incrementByAmount(sum));
     };
     showMeTheValue();
@@ -45,6 +46,10 @@ const Cart = () => {
     dispatch(decrement());
     let filterTheId = id.filter((id) => id !== productId);
     dispatch(getFilteredId(filterTheId));
+  };
+
+  const increamentCounter = () => {
+    dispatch(counter());
   };
 
   return (
@@ -95,6 +100,13 @@ const Cart = () => {
                   >
                     Remove
                   </button>
+                  <Link
+                    onClick={increamentCounter}
+                    to={"/address"}
+                    className="py-2 px-10 ml-5 bg-green-500 text-white cursor-pointer hover:bg-green-400 rounded "
+                  >
+                    Buy Now
+                  </Link>
                 </div>
 
                 {/* third */}
