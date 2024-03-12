@@ -94,16 +94,17 @@ const Cart = () => {
                     {" "}
                     :Qty
                   </label>
+
                   <button
                     onClick={() => removeProductFromCart(product.id)}
-                    className="py-2 px-10 ml-5 bg-red-500 text-white cursor-pointer hover:bg-red-400 rounded "
+                    className="py-2 px-3 lg:px-10 ml-5 bg-red-500 text-white cursor-pointer hover:bg-red-400 rounded "
                   >
                     Remove
                   </button>
                   <Link
                     onClick={increamentCounter}
                     to={"/address"}
-                    className="py-2 px-10 ml-5 bg-green-500 text-white cursor-pointer hover:bg-green-400 rounded "
+                    className="py-2 px-3 lg:px-10 ml-5 bg-green-500 text-white cursor-pointer hover:bg-green-400 rounded "
                   >
                     Buy Now
                   </Link>

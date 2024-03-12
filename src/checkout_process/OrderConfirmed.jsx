@@ -1,13 +1,15 @@
 import React from "react";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+
 import { counterDecrement } from "../Reducer/Reducer";
 import { useDispatch } from "react-redux";
 
 const OrderConfirmed = () => {
   let dispatch = useDispatch();
-  const decrementCounter = () => {
-    dispatch(counterDecrement(0));
+
+  const increamentCounter = () => {
+    dispatch(counterDecrement());
   };
   return (
     <div>
@@ -28,7 +30,7 @@ const OrderConfirmed = () => {
           <Link to={"/"}>
             <button
               className="border-2 px-2 mx-auto w-[300px] py-4 rounded-lg font-bold"
-              onClick={decrementCounter}
+              onClick={increamentCounter}
             >
               Go Back To Home
             </button>

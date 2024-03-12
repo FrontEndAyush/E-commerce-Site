@@ -5,11 +5,11 @@ import { Outlet } from "react-router-dom";
 const Address = () => {
   let counterNum = useSelector((state) => state.counterSlice.counter);
   return (
-    <div>
+    <div className="">
       <div className="container mx-auto">
         <section class="text-gray-600 body-font">
           <div class="container px-5 py-20 mx-auto flex flex-wrap flex-col">
-            <div class="flex mx-auto flex-wrap -mb-2">
+            <div class="hidden  lg:flex mx-auto flex-wrap -mb-2">
               <a
                 className={`sm:px-6 py-3 w-1/2 sm:w-auto ${
                   counterNum === 1 &&

@@ -99,11 +99,11 @@ const Header = () => {
               className="border-2 w-[600px] rounded-full py-[5px] hidden lg:block pl-10"
             />
 
-            <CiSearch className="absolute top-2 left-4 text-xl" />
+            <CiSearch className="absolute top-2 left-4 text-xl hidden lg:block" />
           </div>
 
           {/* cart and favourties  */}
-          <div className="flex text-2xl gap-2 ">
+          <div className="flex text-2xl gap-3 ">
             <Link to={"/cart"}>
               <Badge
                 badgeContent={counter}
@@ -113,7 +113,7 @@ const Header = () => {
                 <FaShoppingCart />
               </Badge>
             </Link>
-            <Link>
+            <Link className="mr-4">
               <RiAdminFill />
             </Link>
           </div>

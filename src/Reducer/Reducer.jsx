@@ -47,9 +47,9 @@ export const counterSlice = createSlice({
     counter: (state) => {
       state.counter += 1;
     },
-    counterDecrement: (state, action) => {
-      state.counter = action.payload;
-      console.log(action.payload)
+    counterDecrement: (state) => {
+      state.counter = 0;
+    
     },
   },
 });
