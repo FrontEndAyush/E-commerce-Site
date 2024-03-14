@@ -30,7 +30,10 @@ export const counterSlice = createSlice({
     },
     getData: (state, action) => {
       state.product = action.payload;
-      state.filteredData = action.payload;
+      let productItems = localStorage.getItem("productItems");
+      localStorage.setItem("productItems", JSON.stringify(state.product));
+
+      state.filteredData = JSON.parse(productItems);
     },
     decrement: (state) => {
       state.value -= 1;
@@ -47,9 +50,8 @@ export const counterSlice = createSlice({
     counter: (state) => {
       state.counter += 1;
     },
-    counterDecrement: (state) => {
-      state.counter = 0;
-    
+    counterDecrement: (state, action) => {
+      state.counter = action.payload;
     },
   },
 });
@@ -65,7 +67,7 @@ export const {
   getfilteredData,
   getFilterDataByCategory,
   counter,
-  counterDecrement
+  counterDecrement,
 } = counterSlice.actions;
 
 export default counterSlice;

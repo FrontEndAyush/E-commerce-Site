@@ -9,7 +9,7 @@ const OrderConfirmed = () => {
   let dispatch = useDispatch();
 
   const increamentCounter = () => {
-    dispatch(counterDecrement());
+    dispatch(counterDecrement(0));
   };
   return (
     <div>

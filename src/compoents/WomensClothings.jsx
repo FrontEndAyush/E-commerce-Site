@@ -5,14 +5,14 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const WomenClothings = () => {
+  let productItems = localStorage.getItem("productItems");
   let dispatch = useDispatch();
-  let products = useSelector((state) => state.counterSlice.product);
 
   let filteredDataByCategory = useSelector(
     (state) => state.counterSlice.filteredDataByCategory
   );
   useEffect(() => {
-    let filter = products.filter(
+    let filter = JSON.parse(productItems).filter(
       (product) => product.category === "women's clothing"
     );
     dispatch(getFilterDataByCategory(filter));

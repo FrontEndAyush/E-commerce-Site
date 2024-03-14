@@ -1,27 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import { getfilteredData } from "../Reducer/Reducer";
 import { useDispatch } from "react-redux";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+
 import { ShimmerUIThumbnail } from "shimmer-ui-effect";
 import { ShimmerUIButton } from "shimmer-ui-effect";
 
 const Shop = () => {
+  let productItems = localStorage.getItem("productItems");
   let dispatch = useDispatch();
-  let products = useSelector((state) => state.counterSlice.product);
-  let filteredProductsData = useSelector(
-    (state) => state.counterSlice.filteredData
-  );
+  let filteredData = useSelector((state) => state.counterSlice.filteredData);
+
   let isTrue = useSelector((state) => state.counterSlice.isTrue);
 
   const sortByCategory = (item) => {
-    let filter = products.filter((product) => product.category == item);
+    console.log("heelo");
+    let filter = filteredData.filter(
+      (product) => product.category == item
+    );
     dispatch(getfilteredData(filter));
+    console.log("heeloaaa");
   };
   const onPriceChange = (value) => {
-    let filter = products.filter((product) => product.price > value);
+    let filter = JSON.parse(productItems).filter(
+      (product) => product.price > value
+    );
     dispatch(getfilteredData(filter));
   };
 
@@ -33,7 +37,7 @@ const Shop = () => {
       {isTrue === true ? (
         <>
           <div className="flex justify-center mt-16  ">
-             {/* for shimmer effect you have to install npm js shimmer effect plugin */}
+            {/* for shimmer effect you have to install npm js shimmer effect plugin */}
             <div className="flex flex-col relative right-14">
               <ShimmerUIThumbnail height={200} width={200} rounded />
               <div className="flex flex-col relative top-30">
@@ -102,7 +106,7 @@ const Shop = () => {
             <section className="text-gray-600 body-font">
               <div className="container px-2 lg:px-2 py-10 mx-auto">
                 <div className="flex flex-wrap justify-center -m-4 ">
-                  {filteredProductsData.map((product) => (
+                  {filteredData.map((product) => (
                     <Link
                       key={product.id}
                       to={`/shop/${product.id}`}

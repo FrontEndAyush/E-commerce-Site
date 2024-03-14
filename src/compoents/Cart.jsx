@@ -4,18 +4,24 @@ import { decrement } from "../Reducer/Reducer";
 
 import { incrementByAmount } from "../Reducer/Reducer";
 import { getFilteredId } from "../Reducer/Reducer";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import { counter } from "../Reducer/Reducer";
 
 const Cart = () => {
+  let productItems = localStorage.getItem("productItems");
   let [priceByQuantity, setPriceByQuantity] = useState([0]);
-
+  let filteredData = useSelector((state) => state.counterSlice.filteredData);
   let dispatch = useDispatch();
   let quantity = useRef();
   let price = useSelector((state) => state.counterSlice.price);
   let id = useSelector((state) => state.counterSlice.id);
+  let deepClonedIds = [...id];
   let products = useSelector((state) => state.counterSlice.product);
-  let filter = products.filter((product) => id.includes(product.id));
+  let productsIds = localStorage.getItem("Ids");
+  localStorage.setItem("Ids", JSON.stringify(deepClonedIds));
+  let filter = JSON.parse(productItems).filter((product) =>
+    id.includes(product.id)
+  );
 
   useEffect(() => {
     const showMeTheValue = () => {

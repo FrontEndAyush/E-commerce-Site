@@ -10,12 +10,14 @@ import { getId } from "../Reducer/Reducer";
 import Zoom from "react-img-zoom-gdn";
 
 const ViewProduct = () => {
+  let productItems = localStorage.getItem("productItems");
+
   let dispatch = useDispatch();
   let products = useSelector((state) => state.counterSlice.product);
 
   let { id } = useParams();
 
-  let filter = products.filter((product) => product.id == id);
+  let filter = JSON.parse(productItems).filter((product) => product.id == id);
 
   return (
     <div>

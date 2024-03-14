@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const MensClothing = () => {
+  let productItems = localStorage.getItem("productItems");
   let dispatch = useDispatch();
   let products = useSelector((state) => state.counterSlice.product);
 
@@ -12,7 +13,7 @@ const MensClothing = () => {
     (state) => state.counterSlice.filteredDataByCategory
   );
   useEffect(() => {
-    let filter = products.filter(
+    let filter = JSON.parse(productItems).filter(
       (product) => product.category === "men's clothing"
     );
     dispatch(getFilterDataByCategory(filter));
