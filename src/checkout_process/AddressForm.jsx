@@ -5,8 +5,11 @@ import { counter } from "../Reducer/Reducer";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddressForm = () => {
+  const notify = () => toast("Wow so easy!");
   let name = useRef();
   let address = useRef();
   let phoneNum = useRef();
@@ -26,7 +29,7 @@ const AddressForm = () => {
       dispatch(counter());
       navigate("/address/select_address");
     } else {
-      alert("Please fill the info Correctly.");
+      alert("Enter Your Details Correctly!");
     }
   };
 
@@ -131,7 +134,7 @@ const AddressForm = () => {
             <button
               type="submit"
               // onClick={increamentCounter}
-              onClick={handleSubmit}
+              onClick={handleSubmit && notify}
               class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Next

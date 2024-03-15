@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
@@ -9,8 +9,13 @@ import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  let counter = useSelector((state) => state.counterSlice.value);
+  let [values, setValues] = useState(0);
+  let productsIds = localStorage.getItem("Ids");
+  let value = JSON.parse(productsIds).length;
 
+  useEffect(() => {
+    setValues((prevValue) => JSON.parse(productsIds).length);
+  });
   let [hide, setHide] = useState("");
   let [showHamburger, setShowHamBurger] = useState(false);
 
@@ -78,7 +83,11 @@ const Header = () => {
           </div>
 
           {/* for mobile devices only */}
-          <div className={` ${showHamburger === false ? "hidden" : "block"} `}>
+          <div
+            className={` ${
+              showHamburger === false ? "hidden" : "block"
+            } lg:hidden `}
+          >
             <ul
               className={`flex  flex-col mt-10 justify-start bg-black w-full absolute z-10 left-0 text-white p-5 $ `}
             >
@@ -106,7 +115,7 @@ const Header = () => {
           <div className="flex text-2xl gap-3 ">
             <Link to={"/cart"}>
               <Badge
-                badgeContent={counter}
+                badgeContent={values}
                 color="primary"
                 className="relative bottom-2"
               >

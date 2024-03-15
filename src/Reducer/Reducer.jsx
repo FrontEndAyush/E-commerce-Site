@@ -17,16 +17,29 @@ export const counterSlice = createSlice({
   reducers: {
     increment: (state) => {
       state.value += 1;
+      localStorage.setItem("value", JSON.stringify(state.value));
     },
 
     incrementByAmount: (state, action) => {
       state.price = action.payload;
     },
+
+    // this is for the when someone click on the add to cart button
     getId: (state, action) => {
-      state.id.push(action.payload);
+      if (!state.id.includes(action.payload)) state.id.push(action.payload);
+      localStorage.setItem("Ids", JSON.stringify(state.id));
     },
+    //  this is for the when someone removes a item from the cart
+    decrement: (state) => {
+      state.value -= 1;
+      localStorage.setItem("value", JSON.stringify(state.value));
+    },
+    // this is for the when someone removes the item from the cart
     getFilteredId: (state, action) => {
       state.id = action.payload;
+
+      // local storage goint to update when someone removes items from the cart
+      localStorage.setItem("Ids", JSON.stringify(state.id));
     },
     getData: (state, action) => {
       state.product = action.payload;
@@ -34,9 +47,6 @@ export const counterSlice = createSlice({
       localStorage.setItem("productItems", JSON.stringify(state.product));
 
       state.filteredData = JSON.parse(productItems);
-    },
-    decrement: (state) => {
-      state.value -= 1;
     },
     isTrueMethod: (state, action) => {
       state.isTrue = action.payload;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { React } from "react";
 import { useSelector } from "react-redux";
 import { Link, json } from "react-router-dom";
 import { getfilteredData } from "../Reducer/Reducer";
@@ -10,22 +10,17 @@ import { ShimmerUIButton } from "shimmer-ui-effect";
 const Shop = () => {
   let productItems = localStorage.getItem("productItems");
   let dispatch = useDispatch();
+  let products = useSelector((state) => state.counterSlice.product);
   let filteredData = useSelector((state) => state.counterSlice.filteredData);
 
   let isTrue = useSelector((state) => state.counterSlice.isTrue);
 
   const sortByCategory = (item) => {
-    console.log("heelo");
-    let filter = filteredData.filter(
-      (product) => product.category == item
-    );
+    let filter = products.filter((product) => product.category == item);
     dispatch(getfilteredData(filter));
-    console.log("heeloaaa");
   };
   const onPriceChange = (value) => {
-    let filter = JSON.parse(productItems).filter(
-      (product) => product.price > value
-    );
+    let filter = JSON.parse(productItems).filter((product) => product.price > value);
     dispatch(getfilteredData(filter));
   };
 

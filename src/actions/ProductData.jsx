@@ -1,4 +1,3 @@
-import React from "react";
 import { getData } from "../Reducer/Reducer";
 import { isTrueMethod } from "../Reducer/Reducer";
 

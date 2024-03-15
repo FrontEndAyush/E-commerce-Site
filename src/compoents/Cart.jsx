@@ -15,12 +15,12 @@ const Cart = () => {
   let quantity = useRef();
   let price = useSelector((state) => state.counterSlice.price);
   let id = useSelector((state) => state.counterSlice.id);
-  let deepClonedIds = [...id];
+
   let products = useSelector((state) => state.counterSlice.product);
   let productsIds = localStorage.getItem("Ids");
-  localStorage.setItem("Ids", JSON.stringify(deepClonedIds));
+
   let filter = JSON.parse(productItems).filter((product) =>
-    id.includes(product.id)
+    JSON.parse(productsIds).includes(product.id)
   );
 
   useEffect(() => {
@@ -48,9 +48,10 @@ const Cart = () => {
     setPriceByQuantity(filteredvalue);
   };
 
+  // when someone click on remove button
   const removeProductFromCart = (productId) => {
     dispatch(decrement());
-    let filterTheId = id.filter((id) => id !== productId);
+    let filterTheId = JSON.parse(productsIds).filter((id) => id !== productId);
     dispatch(getFilteredId(filterTheId));
   };
 
