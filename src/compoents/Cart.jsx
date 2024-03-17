@@ -4,7 +4,7 @@ import { decrement } from "../Reducer/Reducer";
 
 import { incrementByAmount } from "../Reducer/Reducer";
 import { getFilteredId } from "../Reducer/Reducer";
-import { Link } from "react-router-dom";
+import { Link, useBeforeUnload } from "react-router-dom";
 import { counter } from "../Reducer/Reducer";
 
 const Cart = () => {
@@ -32,8 +32,9 @@ const Cart = () => {
         (sum, productPrice) => sum + productPrice.price,
         0
       );
+      let usedToFixWithSum = sum.toFixed(2);
 
-      dispatch(incrementByAmount(sum));
+      dispatch(incrementByAmount(usedToFixWithSum));
     };
     showMeTheValue();
   }, []);
@@ -64,8 +65,8 @@ const Cart = () => {
             >
               <div className="flex justify-between gap-10 flex-wrap p-5 lg:flex-nowrap">
                 {/* first  */}
-                <div className="border-2 p-5 rounded-xl w-[430px]  ">
-                  <img src={product.image} alt="" className="size-60" />
+                <div className="border-2 p-5 rounded-xl w-[300px]  ">
+                  <img src={product.image} alt="" className="w-[300px]" />
                 </div>
 
                 {/* second */}

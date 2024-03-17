@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, json, useNavigate } from "react-router-dom";
+import { React, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
@@ -12,7 +12,6 @@ import { useDispatch } from "react-redux";
 
 const Header = () => {
   let dispatch = useDispatch();
-  let productItems = localStorage.getItem("productItems");
   let product = useSelector((state) => state.counterSlice.product);
   let navigate = useNavigate();
   const id = useSelector((state) => state.counterSlice.id);
