@@ -6,14 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { increment } from "../Reducer/Reducer";
 import { getId } from "../Reducer/Reducer";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // for Zooming the images installed from npm js
 import Zoom from "react-img-zoom-gdn";
 
 const ViewProduct = () => {
+  const notify = () => toast("Product Added😊!");
   let productItems = localStorage.getItem("productItems");
-
   let dispatch = useDispatch();
-  let products = useSelector((state) => state.counterSlice.product);
 
   let { id } = useParams();
 
@@ -21,6 +23,10 @@ const ViewProduct = () => {
 
   return (
     <div>
+      <div className="w-[100px]">
+        <ToastContainer className="mt-[100px] mr-[170px] w-[100px]" />
+      </div>
+
       <div className="container mx-auto w-full ">
         <section className="text-gray-600 body-font">
           {filter.map((product) => (
@@ -29,7 +35,6 @@ const ViewProduct = () => {
               className="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center"
             >
               <div className="rounded-lg">
-
                 {/* zoom effect attribut  */}
                 <Zoom
                   img={product.image}
@@ -56,9 +61,11 @@ const ViewProduct = () => {
                     ${product.price}
                   </button>
                   <button
-                    className="text-lg px-16 py-3 rounded-full text-white hover:bg-green-500 transition-all duration-300 bg-black ml-8"
+                    className="text-lg px-16 py-2 rounded-full text-white  transition-all hover:bg-green-600 duration-700 bg-black ml-8"
                     onClick={() =>
-                      dispatch(increment()) && dispatch(getId(product.id))
+                      dispatch(increment()) &&
+                      dispatch(getId(product.id)) &&
+                      notify()
                     }
                   >
                     Add To Cart

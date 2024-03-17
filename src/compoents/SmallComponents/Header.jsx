@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
@@ -7,15 +7,16 @@ import { RiAdminFill } from "react-icons/ri";
 import { IoMdMenu } from "react-icons/io";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
+import { getfilteredData } from "../../Reducer/Reducer";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
-  let [values, setValues] = useState(0);
-  let productsIds = localStorage.getItem("Ids");
-  let value = JSON.parse(productsIds).length;
+  let dispatch = useDispatch();
+  let productItems = localStorage.getItem("productItems");
+  let product = useSelector((state) => state.counterSlice.product);
+  let navigate = useNavigate();
+  const id = useSelector((state) => state.counterSlice.id);
 
-  useEffect(() => {
-    setValues((prevValue) => JSON.parse(productsIds).length);
-  });
   let [hide, setHide] = useState("");
   let [showHamburger, setShowHamBurger] = useState(false);
 
@@ -27,6 +28,15 @@ const Header = () => {
     setShowHamBurger((previousValue) => !previousValue);
   };
 
+  const searchFunctionality = (value) => {
+    navigate("/shop");
+
+    let filter = product.filter((product) =>
+      product.title.toLowerCase().includes(value.toLowerCase().trim())
+    );
+
+    dispatch(getfilteredData(filter));
+  };
   return (
     <>
       <header>
@@ -106,6 +116,7 @@ const Header = () => {
               placeholder={"Search for Products..."}
               id=""
               className="border-2 w-[600px] rounded-full py-[5px] hidden lg:block pl-10"
+              onChange={(e) => searchFunctionality(e.target.value)}
             />
 
             <CiSearch className="absolute top-2 left-4 text-xl hidden lg:block" />
@@ -115,7 +126,7 @@ const Header = () => {
           <div className="flex text-2xl gap-3 ">
             <Link to={"/cart"}>
               <Badge
-                badgeContent={values}
+                badgeContent={id.length}
                 color="primary"
                 className="relative bottom-2"
               >

@@ -1,6 +1,6 @@
 import { React } from "react";
 import { useSelector } from "react-redux";
-import { Link, json } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getfilteredData } from "../Reducer/Reducer";
 import { useDispatch } from "react-redux";
 
@@ -20,7 +20,9 @@ const Shop = () => {
     dispatch(getfilteredData(filter));
   };
   const onPriceChange = (value) => {
-    let filter = JSON.parse(productItems).filter((product) => product.price > value);
+    let filter = JSON.parse(productItems).filter(
+      (product) => product.price > value
+    );
     dispatch(getfilteredData(filter));
   };
 

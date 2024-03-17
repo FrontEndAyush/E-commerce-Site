@@ -4,13 +4,13 @@ import { decrement } from "../Reducer/Reducer";
 
 import { incrementByAmount } from "../Reducer/Reducer";
 import { getFilteredId } from "../Reducer/Reducer";
-import { Link, json } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { counter } from "../Reducer/Reducer";
 
 const Cart = () => {
+  let ids = localStorage.getItem("Ids");
   let productItems = localStorage.getItem("productItems");
-  let [priceByQuantity, setPriceByQuantity] = useState([0]);
-  let filteredData = useSelector((state) => state.counterSlice.filteredData);
+
   let dispatch = useDispatch();
   let quantity = useRef();
   let price = useSelector((state) => state.counterSlice.price);
@@ -26,7 +26,7 @@ const Cart = () => {
   useEffect(() => {
     const showMeTheValue = () => {
       let productPrice = products.filter((product) =>
-        id.includes(product.id) ? product.price : ""
+        JSON.parse(ids).includes(product.id) ? product.price : ""
       );
       let sum = productPrice.reduce(
         (sum, productPrice) => sum + productPrice.price,
@@ -36,17 +36,7 @@ const Cart = () => {
       dispatch(incrementByAmount(sum));
     };
     showMeTheValue();
-  }, [priceByQuantity, id]);
-
-  const priceByQuantityfunc = (quantity, id) => {
-    let filter = products.filter((product) =>
-      product.id == id ? product.price : ""
-    );
-
-    let filteredvalue = filter.map((value) => value.price * quantity);
-
-    setPriceByQuantity(filteredvalue);
-  };
+  }, []);
 
   // when someone click on remove button
   const removeProductFromCart = (productId) => {
@@ -74,8 +64,8 @@ const Cart = () => {
             >
               <div className="flex justify-between gap-10 flex-wrap p-5 lg:flex-nowrap">
                 {/* first  */}
-                <div className="border-2 p-5 rounded-xl w-[500px] ">
-                  <img src={product.image} alt="" className="" />
+                <div className="border-2 p-5 rounded-xl w-[430px]  ">
+                  <img src={product.image} alt="" className="size-60" />
                 </div>
 
                 {/* second */}
@@ -83,7 +73,10 @@ const Cart = () => {
                   <h1 className="text-3xl mb-5 font-semibold">
                     {product.title}
                   </h1>
-                  <p className="capitalize mb-5">{product.description}</p>
+                  <p className="capitalize mb-5">
+                    {product.description.length > 99 &&
+                      product.description.slice(0, 99) + "...."}
+                  </p>
                   <input
                     type="number"
                     name=""
@@ -91,9 +84,6 @@ const Cart = () => {
                     defaultValue={1}
                     min={1}
                     max={5}
-                    onChange={(e) =>
-                      priceByQuantityfunc(e.target.value, product.id)
-                    }
                     ref={quantity}
                     className="w-[50px] border-2  text-center"
                   />

@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { counter } from "../Reducer/Reducer";
-
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddressForm = () => {
-  const notify = () => toast("Wow so easy!");
+  const notify = () => toast("Please Enter Details, Carefully!");
+
   let name = useRef();
   let address = useRef();
   let phoneNum = useRef();
@@ -29,12 +30,15 @@ const AddressForm = () => {
       dispatch(counter());
       navigate("/address/select_address");
     } else {
-      alert("Enter Your Details Correctly!");
+      notify();
     }
   };
 
   return (
     <div class="flex min-h-full flex-col justify-center px-6 py- lg:px-8">
+      <div className="w-[100px]">
+        <ToastContainer className="mt-[80px] mr-[170px] w-[100px]" />
+      </div>
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Add Your Location
@@ -134,7 +138,7 @@ const AddressForm = () => {
             <button
               type="submit"
               // onClick={increamentCounter}
-              onClick={handleSubmit && notify}
+              onClick={handleSubmit}
               class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Next
