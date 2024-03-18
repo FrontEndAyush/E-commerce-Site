@@ -10,11 +10,8 @@ import { ShimmerUIButton } from "shimmer-ui-effect";
 const Shop = () => {
   let productItems = localStorage.getItem("productItems");
   let dispatch = useDispatch();
-  let products = useSelector((state) => state.counterSlice.product);
   let filteredData = useSelector((state) => state.counterSlice.filteredData);
-
   let isTrue = useSelector((state) => state.counterSlice.isTrue);
-
   const sortByCategory = (item) => {
     let filter = products.filter((product) => product.category == item);
     dispatch(getfilteredData(filter));

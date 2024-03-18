@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
 import Comments from "./Home/Comments";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { increment } from "../Reducer/Reducer";
 import { getId } from "../Reducer/Reducer";
 

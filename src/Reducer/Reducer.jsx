@@ -46,14 +46,18 @@ export const counterSlice = createSlice({
       let productItems = localStorage.getItem("productItems");
       localStorage.setItem("productItems", JSON.stringify(state.product));
 
-      state.filteredData = JSON.parse(productItems);
+      //  here i set the localStorage data into filterdData array
+      state.filteredData = JSON.parse(productItems) || [];
     },
     isTrueMethod: (state, action) => {
       state.isTrue = action.payload;
     },
+    
     getfilteredData: (state, action) => {
       state.filteredData = action.payload;
     },
+
+
     getFilterDataByCategory: (state, action) => {
       state.filteredDataByCategory = action.payload;
     },

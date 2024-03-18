@@ -4,24 +4,28 @@ import { decrement } from "../Reducer/Reducer";
 
 import { incrementByAmount } from "../Reducer/Reducer";
 import { getFilteredId } from "../Reducer/Reducer";
-import { Link, useBeforeUnload } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { counter } from "../Reducer/Reducer";
 
 const Cart = () => {
+  let [filteredData, setFilteredData] = useState([]);
   let ids = localStorage.getItem("Ids");
   let productItems = localStorage.getItem("productItems");
 
   let dispatch = useDispatch();
-  let quantity = useRef();
+
   let price = useSelector((state) => state.counterSlice.price);
-  let id = useSelector((state) => state.counterSlice.id);
 
   let products = useSelector((state) => state.counterSlice.product);
   let productsIds = localStorage.getItem("Ids");
 
-  let filter = JSON.parse(productItems).filter((product) =>
-    JSON.parse(productsIds).includes(product.id)
-  );
+  useEffect(() => {
+    let filter = JSON.parse(productItems).filter((product) =>
+      JSON.parse(productsIds).includes(product.id)
+    );
+
+    setFilteredData(filter);
+  }, []);
 
   useEffect(() => {
     const showMeTheValue = () => {
@@ -52,13 +56,13 @@ const Cart = () => {
 
   return (
     <div className="">
-      {filter.length === 0 ? (
+      {filteredData.length === 0 ? (
         <div className="container mx-auto text-center font-black text-5xl py-20">
           <h1>Nothing in the Cart!😥</h1>
         </div>
       ) : (
         <>
-          {filter.map((product) => (
+          {filteredData.map((product) => (
             <div
               key={product.id}
               className="container mx-auto  lg:py-20 mb-5 py-5 my-auto gap-5 border-2 rounded-lg p-5"
@@ -85,7 +89,6 @@ const Cart = () => {
                     defaultValue={1}
                     min={1}
                     max={5}
-                    ref={quantity}
                     className="w-[50px] border-2  text-center"
                   />
                   <label htmlFor="num" className="">

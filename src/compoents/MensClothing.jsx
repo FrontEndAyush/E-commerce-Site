@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const MensClothing = () => {
   let productItems = localStorage.getItem("productItems");
   let dispatch = useDispatch();
-  let products = useSelector((state) => state.counterSlice.product);
 
   let filteredDataByCategory = useSelector(
     (state) => state.counterSlice.filteredDataByCategory
