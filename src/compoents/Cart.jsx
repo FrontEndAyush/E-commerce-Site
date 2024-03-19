@@ -9,7 +9,7 @@ import { counter } from "../Reducer/Reducer";
 
 const Cart = () => {
   let [filteredData, setFilteredData] = useState([]);
-  let ids = localStorage.getItem("Ids");
+
   let productItems = localStorage.getItem("productItems");
 
   let dispatch = useDispatch();
@@ -19,18 +19,18 @@ const Cart = () => {
   let products = useSelector((state) => state.counterSlice.product);
   let productsIds = localStorage.getItem("Ids");
 
+  let parsedProductId = JSON.parse(productsIds) || [];
   useEffect(() => {
     let filter = JSON.parse(productItems).filter((product) =>
-      JSON.parse(productsIds).includes(product.id)
+      parsedProductId.includes(product.id)
     );
-
     setFilteredData(filter);
   }, []);
 
   useEffect(() => {
     const showMeTheValue = () => {
       let productPrice = products.filter((product) =>
-        JSON.parse(ids).includes(product.id) ? product.price : ""
+        JSON.parse(productsIds).includes(product.id) ? product.price : ""
       );
       let sum = productPrice.reduce(
         (sum, productPrice) => sum + productPrice.price,
@@ -47,7 +47,11 @@ const Cart = () => {
   const removeProductFromCart = (productId) => {
     dispatch(decrement());
     let filterTheId = JSON.parse(productsIds).filter((id) => id !== productId);
+    let filter = JSON.parse(productItems).filter((product) =>
+      filterTheId.includes(product.id)
+    );
     dispatch(getFilteredId(filterTheId));
+    setFilteredData(filter);
   };
 
   const increamentCounter = () => {
@@ -56,7 +60,7 @@ const Cart = () => {
 
   return (
     <div className="">
-      {filteredData.length === 0 ? (
+      {filteredData.length == 0 ? (
         <div className="container mx-auto text-center font-black text-5xl py-20">
           <h1>Nothing in the Cart!😥</h1>
         </div>

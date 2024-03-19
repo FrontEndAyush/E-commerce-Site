@@ -27,7 +27,7 @@ export const counterSlice = createSlice({
     // this is for the when someone click on the add to cart button
     getId: (state, action) => {
       if (!state.id.includes(action.payload)) state.id.push(action.payload);
-      localStorage.setItem("Ids", JSON.stringify(state.id));
+      localStorage.setItem("Ids", JSON.stringify(state.id)) || [];
     },
     //  this is for the when someone removes a item from the cart
     decrement: (state) => {

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
@@ -11,6 +11,8 @@ import { getfilteredData } from "../../Reducer/Reducer";
 import { useDispatch } from "react-redux";
 
 const Header = () => {
+  let productsIds = localStorage.getItem("Ids");
+  let parsedProductIdsLength = JSON.parse(productsIds) || [];
   let dispatch = useDispatch();
   let product = useSelector((state) => state.counterSlice.product);
   let navigate = useNavigate();
@@ -22,6 +24,7 @@ const Header = () => {
   const hideTheDiscount = () => {
     setHide("hidden");
   };
+  // useEffect(() => {}, [JSON.parse(productsIds)]);
 
   const setHamBurger = () => {
     setShowHamBurger((previousValue) => !previousValue);
@@ -125,7 +128,7 @@ const Header = () => {
           <div className="flex text-2xl gap-3 ">
             <Link to={"/cart"}>
               <Badge
-                badgeContent={id.length}
+                badgeContent={parsedProductIdsLength.length}
                 color="primary"
                 className="relative bottom-2"
               >
