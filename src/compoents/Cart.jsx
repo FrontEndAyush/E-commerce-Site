@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement } from "../Reducer/Reducer";
 
@@ -10,7 +10,7 @@ import { counter } from "../Reducer/Reducer";
 const Cart = () => {
   let [filteredData, setFilteredData] = useState([]);
 
-  let productItems = localStorage.getItem("productItems");
+  let productItems = JSON.parse(localStorage.getItem("productItems")) || [];
 
   let dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const Cart = () => {
 
   let parsedProductId = JSON.parse(productsIds) || [];
   useEffect(() => {
-    let filter = JSON.parse(productItems).filter((product) =>
+    let filter = productItems.filter((product) =>
       parsedProductId.includes(product.id)
     );
     setFilteredData(filter);
@@ -30,7 +30,7 @@ const Cart = () => {
   useEffect(() => {
     const showMeTheValue = () => {
       let productPrice = products.filter((product) =>
-        JSON.parse(productsIds).includes(product.id) ? product.price : ""
+        parsedProductId.includes(product.id) ? product.price : ""
       );
       let sum = productPrice.reduce(
         (sum, productPrice) => sum + productPrice.price,
@@ -46,8 +46,8 @@ const Cart = () => {
   // when someone click on remove button
   const removeProductFromCart = (productId) => {
     dispatch(decrement());
-    let filterTheId = JSON.parse(productsIds).filter((id) => id !== productId);
-    let filter = JSON.parse(productItems).filter((product) =>
+    let filterTheId = parsedProductId.filter((id) => id !== productId);
+    let filter = productItems.filter((product) =>
       filterTheId.includes(product.id)
     );
     dispatch(getFilteredId(filterTheId));

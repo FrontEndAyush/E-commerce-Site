@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arrayOfObjects = [
+        { id: 1, name: "Apple", price: 100 },
+        { id: 2, name: "Banana", price: 200 },
+        { id: 3, name: "Orange", price: 300 },
+        { id: 4, name: "Mango", price: 400 },
+      ];
+
+      let filteredArray = arrayOfObjects.filter(
+        (prodcut) => prodcut.name === "Apple"
+      );
+      console.log(filteredArray);
+      let sumOfFilteredArrayProduct = filteredArray.map(
+        (prodcut) => prodcut.price * 2
+      );
+
+      let newfilter = filteredArray.filter(
+        (prodcut) => (prodcut.price = sumOfFilteredArrayProduct[0])
+      );
+      console.log(newfilter);
+    </script>
+  </body>
+</html>

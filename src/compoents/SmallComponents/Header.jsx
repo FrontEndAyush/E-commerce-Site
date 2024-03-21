@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
@@ -16,7 +16,6 @@ const Header = () => {
   let dispatch = useDispatch();
   let product = useSelector((state) => state.counterSlice.product);
   let navigate = useNavigate();
-  const id = useSelector((state) => state.counterSlice.id);
 
   let [hide, setHide] = useState("");
   let [showHamburger, setShowHamBurger] = useState(false);
@@ -24,7 +23,6 @@ const Header = () => {
   const hideTheDiscount = () => {
     setHide("hidden");
   };
-  // useEffect(() => {}, [JSON.parse(productsIds)]);
 
   const setHamBurger = () => {
     setShowHamBurger((previousValue) => !previousValue);

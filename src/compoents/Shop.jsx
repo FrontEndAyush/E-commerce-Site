@@ -8,16 +8,16 @@ import { ShimmerUIThumbnail } from "shimmer-ui-effect";
 import { ShimmerUIButton } from "shimmer-ui-effect";
 
 const Shop = () => {
-  let productItems = localStorage.getItem("productItems");
+  let productItems = JSON.parse(localStorage.getItem("productItems")) || [];
   let dispatch = useDispatch();
   let filteredData = useSelector((state) => state.counterSlice.filteredData);
   let isTrue = useSelector((state) => state.counterSlice.isTrue);
   const sortByCategory = (item) => {
-    let filter = JSON.parse(productItems).filter((product) => product.category == item);
+    let filter = productItems.filter((product) => product.category == item);
     dispatch(getfilteredData(filter));
   };
   const onPriceChange = (value) => {
-    let filter = JSON.parse(productItems).filter(
+    let filter = productItems.filter(
       (product) => product.price > value
     );
     dispatch(getfilteredData(filter));
