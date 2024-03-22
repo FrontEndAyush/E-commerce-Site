@@ -69,7 +69,7 @@ const Cart = () => {
           {filteredData.map((product) => (
             <div
               key={product.id}
-              className="container mx-auto  lg:py-20 mb-5 py-5 my-auto gap-5 border-2 rounded-lg p-5"
+              className="container mx-auto  w-[90vw] pt-5 lg:py-20 mb-5 py-5 my-auto  border-2 rounded-lg p-2"
             >
               <div className="flex justify-between gap-10 flex-wrap p-5 lg:flex-nowrap">
                 {/* first  */}
@@ -102,14 +102,14 @@ const Cart = () => {
 
                   <button
                     onClick={() => removeProductFromCart(product.id)}
-                    className="py-2 px-3 lg:px-10 ml-5 bg-red-500 text-white cursor-pointer hover:bg-red-400 rounded "
+                    className="py-2 px-3 text-[3vw] lg:text-[15px]  lg:px-10 ml-2 bg-red-500 text-white cursor-pointer hover:bg-red-400 rounded "
                   >
                     Remove
                   </button>
                   <Link
                     onClick={increamentCounter}
                     to={"/address"}
-                    className="py-2 px-3 lg:px-10 ml-5 bg-green-500 text-white cursor-pointer hover:bg-green-400 rounded "
+                    className="py-2 text-[3vw] px-3 lg:text-[15px] lg:ml-5 lg:px-10 ml-1 bg-green-500 text-white cursor-pointer hover:bg-green-400 rounded "
                   >
                     Buy Now
                   </Link>
@@ -117,13 +117,13 @@ const Cart = () => {
 
                 {/* third */}
                 <div className="mt-10">
-                  <h1 className="text-3xl font-extrabold">${product.price}</h1>
+                  <h1 className="text-3xl font-extrabold ">${product.price}</h1>
                 </div>
               </div>
             </div>
           ))}
           {/* for price  */}
-          <div className="text-right text-3xl font-bold container mt-3">
+          <div className=" text-right p-9 text-3xl font-bold container mt-3 ">
             <h1>Total: ${price}</h1>
           </div>
         </>

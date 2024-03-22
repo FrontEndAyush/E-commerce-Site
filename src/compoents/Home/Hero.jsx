@@ -7,8 +7,12 @@ export const Hero = () => {
       <div className="container mx-auto  relative flex flex-wrap">
         {/* for texts  */}
         <div className=" relative lg:absolute pl-5 pt-5">
-          <h1 className="font-black  text-7xl mb-4">FIND CLOTHES </h1>
-          <h1 className="font-black  text-7xl mb-4 ">THAT <span className="text-[69px]">MATCHES</span></h1>
+          <h1 className="font-black  text-7xl mb-4">
+            FIND <span className="text-[17vw] md:text-7xl">CLOTHES</span>{" "}
+          </h1>
+          <h1 className="font-black  text-7xl mb-4 ">
+            THAT <span className="text-[17vw] leading-1  md:text-7xl">MATCHES</span>
+          </h1>
           <h1 className="font-black tracking-normal leading-[64px]  text-7xl mb-4">
             YOUR STYLE
           </h1>

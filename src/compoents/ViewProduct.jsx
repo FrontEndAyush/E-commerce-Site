@@ -39,8 +39,8 @@ const ViewProduct = () => {
                 <Zoom
                   img={product.image}
                   zoomScale={3}
-                  width={400}
-                  height={400}
+                  width={300}
+                  height={300}
                 />
                 ;
               </div>
@@ -61,7 +61,7 @@ const ViewProduct = () => {
                     ${product.price}
                   </button>
                   <button
-                    className="text-lg px-16 py-2 rounded-full text-white  transition-all hover:bg-green-600 duration-700 bg-black ml-8"
+                    className=" text-white px-4 rounded-full transition-all hover:bg-green-600 duration-700 bg-black ml-8"
                     onClick={() =>
                       dispatch(increment()) &&
                       dispatch(getId(product.id)) &&

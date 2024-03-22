@@ -17,9 +17,7 @@ const Shop = () => {
     dispatch(getfilteredData(filter));
   };
   const onPriceChange = (value) => {
-    let filter = productItems.filter(
-      (product) => product.price > value
-    );
+    let filter = productItems.filter((product) => product.price > value);
     dispatch(getfilteredData(filter));
   };
 
@@ -117,8 +115,10 @@ const Shop = () => {
                         <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
                           {product.category}
                         </h3>
-                        <h2 className="text-gray-900 title-font text-lg font-medium">
-                          {product.title}
+                        <h2 className="text-gray-900 title-font  text-lg font-medium">
+                          {product.title.length > 24
+                            ? product.title.slice(0, 24)
+                            : product.title}
                         </h2>
                         <p className="mt-3">${product.price}</p>
                       </div>

@@ -4,7 +4,7 @@ const Newsletter = () => {
   return (
     <>
       <div className="lg:py-16 py-4">
-        <div className="container w-[340px] lg:w-full mx-auto  py-20 rounded-3xl flex  lg:justify-around justify-center  flex-wrap  bg-black">
+        <div className="container w-[90vw] p-5  lg:w-full mx-auto  py-20 rounded-3xl flex  lg:justify-around justify-center  flex-wrap  bg-black">
           {/* first div for text */}
           <div>
             <h1 className="text-white text-2xl text-center lg:text-4xl mb-2 font-extrabold">
